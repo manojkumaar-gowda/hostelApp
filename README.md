@@ -63,3 +63,29 @@ STEPS AFTER DOWNLOADING THE CODE
     
 
 You are good to go now
+
+
+SAMPLE SCREENSHOTS
+
+1. Student Login
+![image](https://user-images.githubusercontent.com/95869837/148693037-bf02c7d6-df73-4746-8e56-a54bb3043aa9.png)
+
+2.Registration
+![image](https://user-images.githubusercontent.com/95869837/148693080-71f64694-6449-45c5-ae8e-c7683c8e75d1.png)
+
+3.Applying for outpass
+![image](https://user-images.githubusercontent.com/95869837/148693131-445f5942-c833-46fa-bd95-c150c64978b0.png)
+
+4.Common Chat
+![image](https://user-images.githubusercontent.com/95869837/148693171-f282fab4-892a-483d-a0b4-3260e840b63e.png)
+
+5.Registered Room Grievances
+![image](https://user-images.githubusercontent.com/95869837/148693199-51f4c446-abdf-433b-96d8-e40ecdefc2a8.png)
+
+6. News and announcements
+![image](https://user-images.githubusercontent.com/95869837/148693231-0c8195ee-09e9-49ac-9496-aee0b27e4ee2.png)
+
+7.Approved Outpass
+![image](https://user-images.githubusercontent.com/95869837/148693252-c50ac3f0-f67b-44a9-af17-61fef0006b24.png)
+
+
