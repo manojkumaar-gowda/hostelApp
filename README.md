@@ -67,25 +67,100 @@ You are good to go now
 
 SAMPLE SCREENSHOTS
 
+#STUDENT APP
 1. Student Login
-![image](https://user-images.githubusercontent.com/95869837/148693037-bf02c7d6-df73-4746-8e56-a54bb3043aa9.png)
+
+![image](https://user-images.githubusercontent.com/95869837/148693323-e69e4388-7167-4e2c-b658-27877bd61830.png)
+
 
 2.Registration
+
 ![image](https://user-images.githubusercontent.com/95869837/148693080-71f64694-6449-45c5-ae8e-c7683c8e75d1.png)
 
+
 3.Applying for outpass
+
 ![image](https://user-images.githubusercontent.com/95869837/148693131-445f5942-c833-46fa-bd95-c150c64978b0.png)
 
+
 4.Common Chat
+
 ![image](https://user-images.githubusercontent.com/95869837/148693171-f282fab4-892a-483d-a0b4-3260e840b63e.png)
 
+
 5.Registered Room Grievances
+
 ![image](https://user-images.githubusercontent.com/95869837/148693199-51f4c446-abdf-433b-96d8-e40ecdefc2a8.png)
 
+
 6. News and announcements
+7. 
 ![image](https://user-images.githubusercontent.com/95869837/148693231-0c8195ee-09e9-49ac-9496-aee0b27e4ee2.png)
 
+
 7.Approved Outpass
+
 ![image](https://user-images.githubusercontent.com/95869837/148693252-c50ac3f0-f67b-44a9-af17-61fef0006b24.png)
+
+
+8.Messages sent to parent
+
+![image](https://user-images.githubusercontent.com/95869837/148693418-97453260-1726-4240-b290-11e33cb7782d.png)
+
+
+
+#ADMIN
+
+1.Admin Login
+
+![image](https://user-images.githubusercontent.com/95869837/148693569-ee024fa4-64d5-4d7d-b0a8-dfe81b6b8a4c.png)
+
+
+
+2.Manage department and years
+
+![image](https://user-images.githubusercontent.com/95869837/148693465-ec6783b1-c30c-403b-84dd-1fb07a340530.png)
+
+
+
+3.Manage student details
+![image](https://user-images.githubusercontent.com/95869837/148693630-29a84966-d876-4bcb-81fe-d43e8944302a.png)
+
+
+4.Manage outpass
+
+![image](https://user-images.githubusercontent.com/95869837/148693655-71fb0f12-0b81-4cb6-bffb-7f2b9e510e6f.png)
+
+
+
+5.Admin-student chat
+
+![image](https://user-images.githubusercontent.com/95869837/148693675-de0e3057-c80f-48ee-87e1-5a30b49160c9.png)
+
+
+6. Repairs
+
+![image](https://user-images.githubusercontent.com/95869837/148693723-d3fe45ec-8d24-4412-accc-38018382c0a2.png)
+
+
+
+7. Manage news and announcements
+
+![image](https://user-images.githubusercontent.com/95869837/148693749-584ee6fc-a607-428a-a03f-7f8f039c9c13.png)
+
+
+
+8. Entry at hostel
+
+![image](https://user-images.githubusercontent.com/95869837/148693788-e7e06aa0-bfa9-49b8-b929-678475009f55.png)
+
+
+
+9. Entry at gate
+
+![image](https://user-images.githubusercontent.com/95869837/148693807-0af879c0-b736-45f0-82de-31976f79bdba.png)
+
+
+Thank you
 
 
