@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Account Registration | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_registration.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    
+    
+    <div class="container reg" >
+        <h5 style="margin-left:3%">New Student Registration</h5><br>
+        <form action="" method="post">
+            <div class="input-field col s12">
+                <input id="roll_no" type="text" class="validate" autofocus name='rollnumber' value="{{rollnumber}}" required autocomplete="off">
+                <label for="roll_no">Roll Number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="full_name" type="text" class="validate" name='fullname' value="{{fullname}}" required autocomplete="off">
+                <label for="full_name">Full Name</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                <select name='gender'  required >
+                  <option value="" disabled selected>Choose your option</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                <label>Gender</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                <select name='year' required>
+                    <option value="" disabled selected>Choose your option</option>
+                    {% for year in years_obj %}
+                        <option value="{{year.year}}">{{year.year}} year</option>
+                    {% endfor %}
+                </select>
+                <label>Year of Study</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                <select name='department' required>
+                    <option value="" disabled selected>Choose your option</option>
+                    {% for department in department_obj %}
+                        <option value="{{department.department}}">{{department.department}}</option>
+                    {% endfor %}
+
+                </select>
+                <label>Department</label>
+            </div>
+    
+            <div class="col s10">
+                <label>Date of Birth</label>
+                <input type="date" id='dob'  placeholder="Date of Birth" name='dob'  required>
+            </div>
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate" name='email' value="{{email}}"  required autocomplete="off">
+                <label for="email">COLLEGE mail ID</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="roomnumber" type="text" class="validate" name='roomnumber' value="{{roomnumber}}" placeholder="eg. <Room no>" required autocomplete="off">
+                <label for="roomnumber">Room Number</label>
+            </div>
+            
+            <div class="input-field col s12">
+                <input id="mobile_number" type="number" min="6000000000" max="9999999999" class="validate" name='mobilenumber' value="{{mobilenumber}}" required autocomplete="off">
+                <label for="mobile_number">Mobile number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="caretaker" type="text"  class="validate" name="parent" value="{{parent}}"  required autocomplete="off">
+                <label for="caretaker">Parent's/ Guardian's Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="p/gmobile_number" type="number" min="6000000000" max="9999999999" class="validate" name="pmobilenumber" value="{{pmobilenumber}}"  required autocomplete="off">
+                <label for="p/gmobile_number">Parent's/ Guardian's Mobile number</label>
+            </div>
+            
+            <div class="input-field col s6">
+                <textarea id="textarea2" class="materialize-textarea" name="address" data-length="100" autocomplete="off" required>{{address}}</textarea>
+                <label for="textarea2">Address</label>
+            </div>
+            
+            <div class="input-field col s12">
+                <input id="Password" type="text" class="validate" name="pwd" value="{{pwd}}" autocomplete="off"  required>
+                <label for="Password">Password</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="cPassword" type="password" class="validate" name="pwd1" autocomplete="off" required>
+                <label for="cPassword">Confirm Password</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="login" style="float: right;background-color:#6F1A8B !important;color: white !important;">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

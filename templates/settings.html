@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Settings | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:7%;margin-top:15%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">{{student_obj.roll_number}}</span></a>
+                        <a><span class="white-text email">{{student_obj.name}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li ><a href="/" class="text_decoration">Dashboard</a></li>
+            <li><a href="/applynew" class="text_decoration">Apply for outpass</a></li>
+            <li><a href="/previoussubmissions" class="text_decoration">Previous Submissions</a></li>
+            <li><a href="/common_greviances" class="text_decoration">Common Greviances</a></li>
+            <li><a href="/room_greviances" class="text_decoration">Room Specific Greviances</a></li>
+            <li><a href="/news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li class=" active"><a href="/settings" class="text_decoration">Settings</a></li>
+            <li><a download href="whatsapp://send?text=https://COLLEGEhostels.herokuapp.com/static/app_download/COLLEGEhostel.apk" data-action="share/whatsapp/share" class="text_decoration">Share App <span><i class="fa fa-share-alt" style="color: grey;"></i></span> </a></li>
+            <div class="nav_footer">
+                <div class="container">
+                    <form action="/studentlogout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top">
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:30%;width:100%"></a>
+            </div>
+            
+        </div>
+ 
+    <!-- ***** -->
+    <!-- Settings -->
+    <div class="container " style="margin-top:10%;margin-bottom:20%" >
+        
+        <form action="" method="post">
+            <h5 style="color: #6F1A8B;margin-left:3%">Account Settings</h5><br>
+            <div class="input-field col s12">
+                <input id="roll_no" type="text" class="validate" autofocus disabled value="{{student_obj.roll_number}}">
+                <label for="roll_no">Roll Number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="full_name" type="text" class="validate" disabled value="{{student_obj.name}}">
+                <label for="full_name">Full Name</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                <select disabled>
+                  <option value="{{student_obj.gender}}" disabled selected>{{student_obj.gender}}</option>
+
+                </select>
+                <label>Gender</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                
+                    <select name='year' required>
+                        <option value="{{student_obj.year}}" selected>{{student_obj.year}} year(Selected)</option>
+                        {% for year in years_obj %}
+                            <option value="{{year.year}}">{{year.year}} year</option>
+                        {% endfor %}
+                      </select>
+                      
+               
+                <label>Year of Study</label>
+            </div>
+            <div class="input-field col s12" style="margin-top:8%">
+                <select disabled >
+                  <option value="{{student_obj.department}}" disabled selected >{{student_obj.department}}</option>
+                </select>
+                <label>Department</label>
+            </div>
+    
+            <div class="col s10">
+                <label>Date of Birth</label>
+                <input type="date"  placeholder="Date of Birth" disabled value="{{student_obj.dob}}">
+            </div>
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate" value="{{student_obj.email}}" disabled>
+                <label for="email">COLLEGE mail ID</label>
+            </div>
+            
+            <div class="input-field col s12">
+                <input id="roomnumber" type="text" class="validate" value="{{student_obj.room_number}}" name="roomnumber" autocomplete="off" required>
+                <label for="roomnumber">Room number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="mobile_number" type="number" min="6000000000" max="9999999999" class="validate" value="{{student_obj.mobile_number}}" name="number" autocomplete="off" required>
+                <label for="mobile_number">Mobile number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="caretaker" type="text"  class="validate" value="{{student_obj.parent}}" name="parent" disabled>
+                <label for="caretaker">Parent's/ Guardian's Name</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="p/gmobile_number" type="number" min="6000000000" max="9999999999" class="validate" value="{{student_obj.parent_mobile_number}}" name="pnumber"  disabled>
+                <label for="p/gmobile_number">Parent's/ Guardian's Mobile number</label>
+            </div>
+            
+            <div class="input-field col s6">
+                <textarea id="textarea2" data-length="100" class="materialize-textarea" name="address" autocomplete="off" required>{{student_obj.address}}</textarea>
+                <label for="textarea2">Address</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate"  name="password" value="{{student_obj.password}}" autocomplete="off" required>
+                <label for="password">Password</label>
+            </div>
+                        
+            <button class="btn waves-effect waves-light" type="submit" name="login" style="float: right;color:white;background-color:#6F1A8B !important">Save Changes
+                
+            </button>
+        </form>
+        
+    </div>
+    <!-- *********** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+    
+{% endblock %}

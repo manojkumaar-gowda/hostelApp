@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Dashboard | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:7%;margin-top:15%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">{{student_obj.roll_number}}</span></a>
+                        <a><span class="white-text email">{{student_obj.name}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li class=" active"><a href="/" class="text_decoration">Dashboard</a></li>
+            <li><a href="/applynew" class="text_decoration">Apply for outpass</a></li>
+            <li><a href="/previoussubmissions" class="text_decoration">Previous Submissions</a></li>
+            <li><a href="/common_greviances" class="text_decoration">Common Greviances</a></li>
+            <li><a href="/room_greviances" class="text_decoration">Room Specific Greviances</a></li>
+            <li><a href="/news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/settings" class="text_decoration">Settings</a></li>
+            <li><a download href="whatsapp://send?text=https://COLLEGEhostels.herokuapp.com/static/app_download/COLLEGEhostel.apk" data-action="share/whatsapp/share" class="text_decoration">Share App <span><i class="fa fa-share-alt" style="color: grey;"></i></span> </a></li>
+            <div class="nav_footer">
+                <div class="container">
+                    <form action="/studentlogout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top">
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:30%;width:100%"></a>
+            </div>
+            
+        </div>
+    <!-- *************** -->
+    <!-- Dashboard -->
+        <div class="container" style="margin-top:10%;margin-bottom:10%" >
+            {% if student_obj.pass_id != roll %}
+                <h5 style="text-align: center;">Out-Pass</h5><br>
+                <div class="input-field col s12">
+                    <input id="roll_number" type="text"  value="{{pass_obj.student_roll_number}}" readonly>
+                    <label for="roll_number">Roll number</label>
+                </div>
+
+                <div class="row">
+                    <div class="col s6">
+                        <label for="">From</label>
+                        <input type="text" id='dob' class="datepicker" disabled value="{{pass_obj.fromdate}}" >
+                    </div>
+                    <div class="col s6">
+                        <label for="">To</label>
+                        <input type="text" id='dob' class="datepicker" disabled value="{{pass_obj.todate}}">
+                    </div>
+                </div>
+                <div class="input-field col s6">
+                    <textarea id="reason" class="materialize-textarea" readonly >{{pass_obj.reason}}</textarea>
+                    <label for="reason">Reason</label>
+                </div>
+                
+                <div class="input-field col s12">
+                    <input id="caretaker" type="text"   value="{{pass_obj.informed_to}}" readonly>
+                    <label for="caretaker">Informed to</label>
+                </div>
+                <div class="input-field col s12">
+                    <input id="p/gmobile_number" type="number" min="6000000000" max="9999999999"  value="{{pass_obj.mobile_number}}" readonly>
+                    <label for="p/gmobile_number">Mobile number</label>
+                </div>
+                
+                <div class="input-field col s6">
+                    <textarea id="address" class="materialize-textarea" readonly>{{pass_obj.destination_address}}</textarea>
+                    <label for="address">Address</label>
+                </div>
+                
+                <div class="input-field col s6">
+                    <textarea id="hosteldeparture" class="materialize-textarea" readonly>{{pass_obj.hostel_departure}}</textarea>
+                    <label for="hosteldeparture">Time of Departure at the Hostel</label>
+                </div>
+                
+                <div class="input-field col s6">
+                    <textarea id="collegedeparture" class="materialize-textarea" readonly>{{pass_obj.college_departure}}</textarea>
+                    <label for="collegedeparture">Time of Departure at the College</label>
+                </div>
+
+
+
+                <div class="row" >
+                    <h5 style="margin-left:20%">Status: 
+                        {% if pass_obj.pass_status == 'Pending'%}
+                        <span style="color:red">Pending</span>
+                        {% elif pass_obj.pass_status == 'Hold'%}
+                        <span style="color:orange">On Hold</span>
+                        {% elif pass_obj.pass_status == 'Approved'%}
+                        <span style="color:green">Approved</span>
+                        
+                        {% endif %}
+                    </h5>
+                </div>
+                {% if pass_obj.pass_status == 'Approved'%}
+                <div class="row">
+                    <div class="col-12" style="text-align:center">
+                        {% if student_obj.gender == 'Male' %}
+                        <img src="/static/images/menshostel.PNG" alt="" style="width: 80%;">
+                        {% else %}
+                        <img src="/static/images/ladieshostel.PNG" alt="" style="width: 80%;">
+                        {% endif %}
+                        
+                        <br>
+                        HOSTEL STAMP
+                    </div>
+                </div>
+                {% endif %}
+
+                <form action="/deleteapplication" method="post">
+                    <button onclick="return confirm('Are you sure you want to delete the current application?')" class="btn btn-block" style="background-color: #E14833 !important;">Delete application</button>
+                </form>
+
+                
+            {% else %}
+                <h5 style="text-align: center;margin-top:70%">No Recent outpass requests</h5>
+                <img src="/static/images/empty.gif"  style="width: 100%;" alt="">
+            {% endif %}
+        </div>
+            
+                
+    <!-- ***** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+        <script>
+            M.toast({html: '{{message}}'})
+        </script>
+    {% endif %}
+{% endblock %}

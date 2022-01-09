@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Student Login | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_login.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container COLLEGE" style="text-align: center;margin-top:20%;margin-bottom:15%">
+        <img src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" alt="COLLEGElogo" style="width:50%">
+    </div>
+    <div class="container">
+        <form action="" method="post">
+            <h5 style="text-align: left;margin-left:3%;color:#6F1A8B">Student Login</h5><br>
+            <div class="input-field col s12">
+                <input id="roll_no" type="text" class="validate" name="rollnumber" value="{{rollnumber}}" required autocomplete="off">
+                <label for="roll_no">Roll Number</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="Password" type="password" class="validate" name="password" value="{{password}}" required>
+                <label for="Password">Password</label>
+            </div>
+            <p style="float: right;"><a href="/forgotpwd">Forgot Password?</a></p>
+            <button class="btn waves-effect btn-block waves-light" type="submit" name="login" style="float: right;background-color:#6F1A8B !important">Login
+                
+            </button>
+        </form>
+        
+        <div class="container" style="margin-top:50%">
+            <p>or</p>
+        
+            <p>New User? <a href="/studentsignup" style="color:#6F1A8B">SignUp</a> </p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>MAIN GATE DEPARTURE | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+
+    <!-- Logout and redirect to arrival -->
+    <div class="row" style="position:absolute;right:5%;top:3%">
+        <a target='_blank' href="/maingatearrival" class="btn">Arrival</a>
+        <a href='/admin_logout' class="btn" style="background-color: red !important;" onclick="return confirm('Do you wish to logout?')">Logout</a>
+    </div>        
+
+    <!-- Departure container -->
+    <div class="container" style="margin-top:20%;margin-bottom:10%;width:40%" >
+        <h5>Departure</h5><br>
+        <form action="/maingatedeparture" method="post">
+            <div class="input-field col s12">
+                <input id="roll_number" type="number" class="validate" autofocus autocomplete="off" name="rollnumber">
+                <label for="roll_number">Student Roll Number</label>
+            </div>
+            <button type="submit" class="btn" style="background-color: #6F1A8B !important;color:white;float:right;display:none">Confirm</button>
+        </form>
+    </div>
+    <!-- ****************** -->
+    
+        
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

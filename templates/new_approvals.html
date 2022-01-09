@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>New Applications | COLLEGE NAME HOSTEL</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:0%;margin-top:1%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">SRI RAMAKRISHNA ENGINEERING COLLEGE</span></a>
+                        <a><span class="white-text email">HOSTEL ADMIN</span></a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="/admin_dashboard" class="text_decoration">Dashboard</a></li>
+            <li  class="active"><a href="/new_approvals" class="text_decoration">Approve New Applications</a></li>
+            <li><a href="/hold_applications" class="text_decoration">Applications on Hold</a></li>
+            <li><a href="/all_applications" class="text_decoration">All Applications</a></li>
+            <li><a href="/admin_common_grievances" class="text_decoration">Common Grievances</a></li>
+            <li><a href="/student_details" class="text_decoration">Student details</a></li>
+            <li><a href="/dept_and_years" class="text_decoration">Departments and years</a></li>
+            <li><a href="/admin_news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/accounts" class="text_decoration">Accounts</a></li>
+            <li><a href="/new_repairs" class="text_decoration">New Repairs</a></li>
+            <li><a href="/all_repairs" class="text_decoration">All Repairs</a></li>
+            <div class="nav_footer" >
+                <div>
+                    <form action="/admin_logout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top">
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:10%;width:30%"></a>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4"><h5>New outpass Approval</h5></div>
+            <div class="col-3"></div>
+        </div>
+    <!-- **************** -->
+
+    <!-- New application approval -->
+       
+
+        <div style="width:95%;margin-left:3%">
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col" style="text-align: center;">Application Number</th>
+                    <th scope="col" style="text-align: center;">Pass id</th>
+                    <th scope="col" style="text-align: center;">Roll Number</th>
+                    <th scope="col" style="text-align: center;">Name</th>
+                    <th scope="col" style="text-align: center;">Reason</th>
+                    <th scope="col" style="text-align: center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    {% if Pass_obj %}
+                        {% for pass in Pass_obj %}
+                            <tr>       
+                                <th style="text-align:center" scope="row">{{Pass_obj[pass]['id']}}</th>
+                                <th style="text-align:center">{{Pass_obj[pass]['pass_id']}}</th>
+                                <td style="text-align:center">{{Pass_obj[pass]['student_roll_number']}}</td>
+                                <td style="text-align:center">{{Pass_obj[pass]['name']}}</td>
+                                <td style="text-align:center">{{Pass_obj[pass]['reason']}}</td> 
+                                <td style="text-align:center">
+                                    <a href="/newapproveapplication/{{Pass_obj[pass]['pass_id']}}" class="btn" data-toggle="tooltip" title="Approve Application!" style="background-color: green !important;"><i class="fas fa-check"></i></a>
+                                    <a href="/holdapplication/{{Pass_obj[pass]['pass_id']}}" class="btn" data-toggle="tooltip" title="Hold Application!" style="background-color: orange !important;" ><i class="fas fa-pause"></i></a>
+                                    <a href="/newrejectapplication/{{Pass_obj[pass]['pass_id']}}" class="btn" data-toggle="tooltip" title="Reject Application!"  style="background-color: red !important;" onclick="return confirm('Are you sure you want to reject this application?')"><i class="fas fa-trash"></i></a>
+                                    <a target='_blank' href="/viewapplication/{{Pass_obj[pass]['pass_id']}}"class="btn" data-toggle="tooltip" title="View Application!"  style="background-color: blue !important;"><i class="far fa-eye"></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <td>No records found</td>
+                    {% endif %}
+                </tbody>
+                </table>
+        </div>
+    <!-- ***** -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+            });
+        });
+    </script>
+            
+    
+{% endblock %}

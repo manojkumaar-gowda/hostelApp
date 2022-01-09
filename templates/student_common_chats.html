@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Common Greviances | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:7%;margin-top:15%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">{{student_obj.roll_number}}</span></a>
+                        <a><span class="white-text email">{{student_obj.name}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="/" class="text_decoration">Dashboard</a></li>
+            <li><a href="/applynew" class="text_decoration">Apply for outpass</a></li>
+            <li><a href="/previoussubmissions" class="text_decoration">Previous Submissions</a></li>
+            <li class="active"><a href="/common_greviances" class="text_decoration">Common Greviances</a></li>
+            <li><a href="/room_greviances" class="text_decoration">Room Specific Greviances</a></li>
+            <li><a href="/news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/settings" class="text_decoration">Settings</a></li>
+            
+            <li><a download href="whatsapp://send?text=https://COLLEGEhostels.herokuapp.com/static/app_download/COLLEGEhostel.apk" data-action="share/whatsapp/share" class="text_decoration">Share App <span><i class="fa fa-share-alt" style="color: grey;"></i></span> </a></li>
+            <div class="nav_footer">
+                <div class="container">
+                    <form action="/studentlogout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top" >
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:30%;width:100%"></a>
+            </div>
+            <h5 style="margin-top:7%">Common Greviances</h5>
+        </div>
+    <!-- *************** -->
+    
+    <!-- Dashboard -->
+        <div class="container chat" style="height:20%;overflow:scroll;width:100%;height:75vh">
+            {% if greviance_obj %}
+                {% for x in greviance_obj %}
+                    {% if x.roll_number == 123 %}
+                    <div class="row">
+                        <p style="padding: 4%;background-color:orange;color:white;width:80%;overflow-wrap: break-word;border-radius:10px">{{x.message}}
+                            <i style="display: block" >- {{x.time}}</i>
+                        </p>    
+                    </div>
+                    {% elif x.roll_number == student_obj.roll_number %}
+                    <div class="row" style="margin-left:20%">
+                        <p style="padding: 4%;background-color:#6F1A8B;color:white; width:100%;overflow-wrap: break-word;border-radius:10px">{{x.message}}
+                            <i style="display: block" >- {{x.time}}</i>
+                        </p>      
+                    </div>
+                    {% else %}
+                    <div class="row" >
+                        <p style="padding: 4%;border:1px solid #6F1A8B;width:80%;overflow-wrap: break-word;border-radius:10px">{{x.message}}
+                            <i style="display: block" >- {{x.time}}</i>
+                        </p>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="container" style="text-align: center;margin-top:50%">
+                    <img src="/static/images/emptychat.gif" alt="empty chat" style="width:100%">
+                    <p>Chat empty</p>
+                </div>
+            {% endif %}
+            <p id="last"></p>
+        </div>
+        <div  style="margin-top:10%" id="last1">
+            <form action="/common_greviances" method="post">             
+                <div class="row" style="width: 85%;">
+                    <div class="col-10">
+                        <textarea id="textarea2" class="materialize-textarea" data-length="2500" required name="message" style="max-height:7vh;border:1px solid black;padding:10px 10px 10px 10px;border-radius:10px;overflow-y:Scroll;background-color:white;" placeholder="Type something" ></textarea>
+                    </div>
+                    <div class="col-2" style="margin-left:-7%">
+                        <button class="btn"><i class="material-icons">send</i></button>
+                    </div>
+                </div>
+            </form>
+        </div>     
+    <!-- ***** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+        <script>
+            M.toast({html: '{{message}}'})
+        </script>
+    {% endif %}
+    <script>
+        var elmnt = document.getElementById("last");
+        elmnt.scrollIntoView();
+        var elmnt = document.getElementById("last1");
+        elmnt.scrollIntoView();
+    </script>
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Previous Submissions | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:7%;margin-top:15%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">{{student_obj.roll_number}}</span></a>
+                        <a><span class="white-text email">{{student_obj.name}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li ><a href="/" class="text_decoration">Dashboard</a></li>
+            <li><a href="/applynew" class="text_decoration">Apply for outpass</a></li>
+            <li  class=" active"><a href="/previoussubmissions" class="text_decoration">Previous Submissions</a></li>
+            <li><a href="/common_greviances" class="text_decoration">Common Greviances</a></li>
+            <li><a href="/room_greviances" class="text_decoration">Room Specific Greviances</a></li>
+            <li><a href="/news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/settings" class="text_decoration">Settings</a></li>
+            <li><a download href="whatsapp://send?text=https://COLLEGEhostels.herokuapp.com/static/app_download/COLLEGEhostel.apk" data-action="share/whatsapp/share" class="text_decoration">Share App <span><i class="fa fa-share-alt" style="color: grey;"></i></span> </a></li>
+            <div class="nav_footer">
+                <div class="container">
+                    <form action="/studentlogout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top">
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:30%;width:100%"></a>
+            </div>
+            
+        </div>
+    <!-- *********** -->
+    <!-- Previous outpass -->
+        <div class="container" style="margin-top:10%;margin-bottom:5%">
+            <h5 style="color: #6F1A8B;">Outpass History</h5>
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+        </div>
+        <div class="container" style="width: 100%;overflow: scroll;margin-left:-1%">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style='text-align:center;padding:10px 40px;'>Application number</th>
+                        <th style='text-align:center;padding:10px 50px;'>From</th>
+                        <th style='text-align:center;padding:10px 40px'>To</th>
+                        <th style='text-align:center;padding:10px 40px;'>Address</th>
+                        <th style='text-align:center;padding:10px 40px;'>Application Status</th>
+                        <th style='text-align:center;padding:10px 50px;'>Reason</th>
+                        <th style='text-align:center;padding:10px 50px;'>Departure</th>
+                        <th style='text-align:center;padding:10px 50px;'>Arrival</th>
+                        <th style='text-align:center;padding:10px 50px;'>Informed to</th>
+                        <th style='text-align:center;padding:10px 50px;'>Mobile number</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable" style="overflow: scroll;">
+                    
+                    {% if  pass_obj %}
+                        {% for pass in pass_obj %}
+                        <tr>
+                            <td style="text-align: center;">{{pass.pass_id}}</td>
+                            <td style="text-align: center;">{{pass.fromdate}}</td>
+                            <td style="text-align: center;">{{pass.todate}}</td>
+                            <td style="text-align: center;">{{pass.destination_address}}</td>
+                            <td style="text-align: center;">{{pass.pass_status}}</td>
+                            <td style="text-align: center;">{{pass.reason}}</td>
+                            <td style="text-align: center;">{{pass.college_departure}}</td>
+                            <td style="text-align: center;">{{pass.arrival}}</td>
+                            <td style="text-align: center;">{{pass.informed_to}}</td>
+                            <td style="text-align: center;">{{pass.mobile_number}}</td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <td>No records found</td>
+                    {% endif %}
+                    
+                </tbody>
+            </table>
+            <!-- Table end -->
+            
+        </div>
+            
+    <!-- ***** -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function() {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

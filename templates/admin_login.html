@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Admin Login | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_login.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container COLLEGE" style="text-align: center;margin-top:5%;margin-bottom:5%">
+        <img src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" alt="COLLEGElogo" style="width:20%">
+    </div>
+    <div class="container" style="width: 40%;">
+        <form action="" method="post">
+            <h5 style="text-align: left;margin-left:3%;color:#6F1A8B">Admin Login</h5><br>
+            <div class="input-field col s12">
+                <input id="id" type="text" class="validate" name="adminid" value="{{id}}" required>
+                <label for="id">Admin ID</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="Password" type="password" class="validate" name="pwd" value="{{pwd}}" required>
+                <label for="Password">Password</label>
+            </div>
+            
+            <button class="btn waves-effect btn-block waves-light" type="submit" name="login" style="float: right;background-color:#6F1A8B !important">Login
+                
+            </button>
+        </form>
+        
+
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

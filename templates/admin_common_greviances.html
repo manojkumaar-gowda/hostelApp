@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Common Greviances | COLLEGE NAME HOSTEL</title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+          }
+    </style>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:0%;margin-top:1%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">SRI RAMAKRISHNA ENGINEERING COLLEGE</span></a>
+                        <a><span class="white-text email">HOSTEL ADMIN</span></a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="/admin_dashboard" class="text_decoration">Dashboard</a></li>
+            <li><a href="/new_approvals" class="text_decoration">Approve New Applications</a></li>
+            <li><a href="/hold_applications" class="text_decoration">Applications on Hold</a></li>
+            <li><a href="/all_applications" class="text_decoration">All Applications</a></li>
+            <li class="active"><a href="/admin_common_grievances" class="text_decoration">Common Grievances</a></li>
+            <li><a href="/student_details" class="text_decoration">Student details</a></li>
+            <li><a href="/dept_and_years" class="text_decoration">Departments and years</a></li>
+            <li><a href="/admin_news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/accounts" class="text_decoration">Accounts</a></li>
+            <li><a href="/new_repairs" class="text_decoration">New Repairs</a></li>
+            <li><a href="/all_repairs" class="text_decoration">All Repairs</a></li>
+            <div class="nav_footer" >
+                <div>
+                    <form action="/admin_logout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top">
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:10%;width:30%"></a>
+            </div>
+            <div class="col-2"></div>
+            <div class="col-4"><h5>News and Announcements</h5></div>
+            <div class="col-3"></div>
+        </div>
+    <!-- **************** -->
+    <!-- Chats -->
+        <div class="container chat" style="overflow:scroll;width:80%;height:70vh;margin-left:20%">
+            {% if greviance_obj %}
+                {% for x in greviance_obj %}
+                    {% if x.roll_number == 123 %}
+                        <div class="row" style="margin-left:20%">
+                            <p style="padding: 1%;background-color:#6F1A8B;color:white; width:60%;overflow-wrap: break-word;border-radius:10px">{{x.message}}
+                                <i style="display: block" >- {{x.time}}</i>
+                                <a href="/deletechat/{{x.id}}"><i class="material-icons">delete</i></a>
+                            </p>      
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <p style="padding: 1%;border:1px solid black;color:black;width:40%;overflow-wrap: break-word;border-radius:10px">{{x.message}}
+                                <i style="display: block" >- {{x.time}}</i>
+                                <a href="/deletechat/{{x.id}}"><i class="material-icons">delete</i></a>
+                            </p>    
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="container" style="text-align:center;margin-left:0%;">
+                    <img src="/static/images/emptychat.gif" alt="empty chat" style="width:50%">
+                    <p>Chat empty</p>
+                </div>
+            {% endif %}
+            <p id="last"></p>
+        </div>
+        <div class="container" >
+            <form action="/admin_common_grievances" method="post">
+                <div class="row">
+                    <div class="col-10">
+                        <input type="text" id="input_text" class="form-control" placeholder="Type Something" name="message" autofocus required autocomplete = "off" data-length="2500">
+                    </div>
+                    <div class="col-2">
+                        <button class="btn" type="submit">Send<i class="material-icons right">send</i></button>
+                    </div>
+                </div>
+
+            </form>
+        </div>     
+    <!-- ******************** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+    <script>
+        var elmnt = document.getElementById("last");
+        elmnt.scrollIntoView();
+    </script>
+{% endblock %}

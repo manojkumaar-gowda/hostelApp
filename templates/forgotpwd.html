@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Forgot Password| COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/verification.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container COLLEGE" style="text-align: center;margin-top:10%;margin-bottom:30%">
+        <img src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" alt="COLLEGElogo" style="width: 60%;">
+    </div>
+    <div>
+        <h5 style="text-align: center;">Forgot Password</h5>
+        <div class="container">
+          <p style="text-align: center;">Note: A Temporary password will be sent to your registered mobile number as SMS. Please change your password in your account page</p>
+        </div>
+        <form action="" method="post">
+            <div class="container row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate" style="box-shadow: none !important;" value="{{email}}" name="email" autocomplete="off" required>
+                    <label for="email">COLLEGE mail ID</label>
+                </div>
+            </div>
+            <div class="container">
+              <button class="btn btn-block verify" type="submit" style="background-color: #6F1A8B !important;color:white" >Send Temporary Password</button>
+            </div>
+        </form>
+        <br>
+        <div style="margin-top:20%">         
+          <img src="{{ url_for('static', filename='images/otp.svg') }}" alt="" style="width: 90%;">
+        </div>
+    </div>
+    <script>
+        function getCodeBoxElement(index) {
+          return document.getElementById('codeBox' + index);
+        }
+        function onKeyUpEvent(index, event) {
+          const eventCode = event.which || event.keyCode;
+          if (getCodeBoxElement(index).value.length === 1) {
+            if (index !== 4) {
+              getCodeBoxElement(index+ 1).focus();
+            } else {
+              getCodeBoxElement(index).blur();
+              // Submit code
+              console.log('submit code ');
+            }
+          }
+          if (eventCode === 8 && index !== 1) {
+            getCodeBoxElement(index - 1).focus();
+          }
+        }
+        function onFocusEvent(index) {
+          for (item = 1; item < index; item++) {
+            const currentElement = getCodeBoxElement(item);
+            if (!currentElement.value) {
+                currentElement.focus();
+                break;
+            }
+          }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+    <script>
+        M.toast({html: '{{message}}'})
+    </script>
+    {% endif %}
+{% endblock %}

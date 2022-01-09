@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Quicksand:wght@300;400;500;700&family=Raleway:wght@300;400&family=Zen+Kaku+Gothic+New:wght@300&display=swap');
+*{
+    font-family: 'Quicksand';
+    font-weight:300;
+    text-decoration: none;
+}
+.nav_footer{
+    margin-top:25%;
+    
+}
+
+a{
+    text-decoration: none !important;
+}

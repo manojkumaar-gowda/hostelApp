@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>News and Accouncements | COLLEGE NAME HOSTEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/student_dashboard.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/COLLEGElogo.png') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Sidenav -->
+        <ul id="slide-out" class="sidenav" >
+            <li>
+                <div class="user-view">
+                    <div class="background">
+                        <img src="{{ url_for('static', filename='images/profile_cover.svg') }}" class="profile_cover_image">
+                    </div>
+                    <div style="margin-left:7%;margin-top:15%">
+                        <a href="#user"><img class="circle" src="{{ url_for('static', filename='images/COLLEGElogo.png') }}" style="width:30%;height:50%;margin-bottom:5%;margin-left:0%"></a>
+                        <a><span class="white-text name">{{student_obj.roll_number}}</span></a>
+                        <a><span class="white-text email">{{student_obj.name}}</span></a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="/" class="text_decoration">Dashboard</a></li>
+            <li><a href="/applynew" class="text_decoration">Apply for outpass</a></li>
+            <li><a href="/previoussubmissions" class="text_decoration">Previous Submissions</a></li>
+            <li><a href="/common_greviances" class="text_decoration">Common Greviances</a></li>
+            <li><a href="/room_greviances" class="text_decoration">Room Specific Greviances</a></li>
+            <li class="active"><a href="/news_and_announcements" class="text_decoration">News and Announcements</a></li>
+            <li><a href="/settings" class="text_decoration">Settings</a></li>
+            
+            <li><a download href="whatsapp://send?text=https://COLLEGEhostels.herokuapp.com/static/app_download/COLLEGEhostel.apk" data-action="share/whatsapp/share" class="text_decoration">Share App <span><i class="fa fa-share-alt" style="color: grey;"></i></span> </a></li>
+            <div class="nav_footer">
+                <div class="container">
+                    <form action="/studentlogout" method="post">
+                        <button class="btn btn-danger btn-block" style="background-color:#E14833;">Log out</button>
+                    </form>
+                </div>
+                <li style="text-align:center;color:grey" onclick="window.location='/team_members'">Developed with 💖 by IT</li>
+            </div>
+        </ul>
+        <div class="row top" >
+            <div class="col-3">
+                <a href="#" data-target="slide-out" class="sidenav-trigger"><img src="{{ url_for('static', filename='images/user_icon.svg') }}" alt="User" class="user" style="margin-top:30%;width:100%"></a>
+            </div>
+            <h6 style="margin-top:7%">News & Announcements</h6>
+        </div>
+    <!-- *************** -->
+    
+    <!-- Dashboard -->
+        <div class="container" >
+            <div style="overflow-y: scroll;height:90vh">
+                {% if newsandannouncements_obj %}
+                {% for x in newsandannouncements_obj %}
+                    <div class="row" style="margin-bottom:10%;background-color:#ececec;border-radius:10px;padding:5%;">
+                        <div><h6>{{x.title}}</h6></div>
+            
+                        <p></p>
+                        <div></div>
+                        <p style="width:100%;overflow-wrap: break-word;">{{x.message}}</p>
+                        <div >
+                            {% if x.filename != '' %}
+                                <a href="/static/announcements/{{x.filename}}.{{x.extension}}" style="background-color:grey;" class="btn"> <i class="large material-icons">attachment</i>Attachment</a>     
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% else %}
+                    <div class="container" style="text-align: center;margin-top:50%">
+                        <img src="/static/images/emptychat.gif" alt="empty chat" style="width:100%">
+                        <p>No news or announcements</p>
+                    </div>
+                {% endif %}
+                <p id="last"></p>
+            </div>         
+            
+        </div>
+          
+    <!-- ***** -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    {% if message %}
+        <script>
+            M.toast({html: '{{message}}'})
+        </script>
+    {% endif %}
+    <script>
+        var elmnt = document.getElementById("last");
+        elmnt.scrollIntoView();
+    </script>
+{% endblock %}
