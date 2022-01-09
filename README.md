@@ -94,7 +94,7 @@ SAMPLE SCREENSHOTS
 
 
 6. News and announcements
-7. 
+ 
 ![image](https://user-images.githubusercontent.com/95869837/148693231-0c8195ee-09e9-49ac-9496-aee0b27e4ee2.png)
 
 
@@ -113,7 +113,7 @@ SAMPLE SCREENSHOTS
 
 1.Admin Login
 
-![image](https://user-images.githubusercontent.com/95869837/148693569-ee024fa4-64d5-4d7d-b0a8-dfe81b6b8a4c.png)
+![image](https://user-images.githubusercontent.com/95869837/148693913-18f10e1f-8dac-4b02-9a86-e59a6f209933.png)
 
 
 
