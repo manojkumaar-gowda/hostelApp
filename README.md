@@ -9,7 +9,7 @@ STEPS AFTER DOWNLOADING THE CODE
     2. announcements
    ![image](https://user-images.githubusercontent.com/95869837/148692559-5541761e-795c-4453-87fb-93e992b5dfc7.png)
   
-2. edit the url whatsapp://send?text=_https://COLLEGEhostelsapp.herokuapp.com/_static/app_download/COLLEGEhostel.apk everywhere to your desired web hosted url
+2. edit the url whatsapp://send?text=https://COLLEGEhostelsapp.herokuapp.com/static/app_download/COLLEGEhostel.apk everywhere to your desired web hosted url
     Make sure it points to the apk file.
     
 3. Create a free account in fast2sms.com. You will be credited with 50 rs as an entry credit. Copy the api key and paste it in app.py at YOUR FAST2SMS KEY
