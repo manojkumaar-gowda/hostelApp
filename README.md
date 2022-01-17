@@ -16,46 +16,60 @@ STEPS AFTER DOWNLOADING THE CODE
 ![image](https://user-images.githubusercontent.com/95869837/148692722-6b116743-bd36-4443-bb33-8cf653ea8b26.png)
 
 4. Before running the app do the following in the terminal 
-    >>python
+    >>
+        python
 
 
-    >>from app import db
+    >>
+        from app import db
 
 
-    >>db.create_all()
+    >>
+        db.create_all()
 
 
-    >>from app import Departments
+    >>
+        from app import Departments
     
 
-    >>from app import Years
+    >>
+        from app import Years
     
     
-    >>from app import Admin
+    >>
+        from app import Admin
 
 
-    >>db.session.add(Admin(admin_id='menshostel',pwd='123',role='Male'))
+    >>
+        db.session.add(Admin(admin_id='menshostel',pwd='123',role='Male'))
 
 
-    >>db.session.add(Admin(admin_id='ladieshostel',pwd='123',role='Female'))
+    >>
+        db.session.add(Admin(admin_id='ladieshostel',pwd='123',role='Female'))
     
 
-    >>db.session.add(Admin(admin_id='menshostelgate',pwd='123',role='Male'))
+    >>
+        db.session.add(Admin(admin_id='menshostelgate',pwd='123',role='Male'))
     
     
-    >>db.session.add(Admin(admin_id='ladieshostelgate',pwd='123',role='Female'))
+    >>
+        db.session.add(Admin(admin_id='ladieshostelgate',pwd='123',role='Female'))
 
 
-    >>db.session.add(Admin(admin_id='maingate',pwd='123',role='MainGate'))
+    >>
+        db.session.add(Admin(admin_id='maingate',pwd='123',role='MainGate'))
 
 
-    >>db.session.add(Years(year=1))
+    >>
+        db.session.add(Years(year=1))
 
 
-    >>db.session.add(Departments(department='B.Tech IT'))
+    >>
+        db.session.add(Departments(department='B.Tech IT'))
 
 
-    >>db.create_all()
+    >>
+        db.create_all()
 
 
 6. Now make registrations and manage them from the admin panel
